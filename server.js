@@ -51,7 +51,8 @@ app.get('/getInfo', (req, res) => {
 
         })
         .catch(error => {
-            console.log(error);
+            console.log(error.code);
+            res.send('<h1>Error: '+error.code+'<br>Please check that the URL you submitted is correct: '+URL);
         })
 })
 
