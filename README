@@ -1,2 +1,2 @@
-BuyBetter
-
+to install: npm install
+to run: node server
