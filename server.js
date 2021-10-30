@@ -11,6 +11,9 @@ app.get('/', (req, res) => {
 
 app.get('/getInfo', (req, res) => {
     let URL = req['query']['URL']; //get the user inputted URL from the request
+
+    const backBtn = '<button onclick="history.back()">Go Back</button>';
+
     axios.get(URL)
         .then(response => {
             const $ = cheerio.load(response.data); //use cheerio to access the DOM of the html
@@ -32,7 +35,18 @@ app.get('/getInfo', (req, res) => {
                 UPC = 'UPC is not listed';
             }
 
-            res.send('<h1>Product: '+product+'<br> ASIN: '+ASIN+'<br> UPC: '+UPC+'</h1>') //display the information
+            let departments = '';
+            let deptLocation = $('#wayfinding-breadcrumbs_feature_div');
+            departments = deptLocation.text();
+            deptArr = departments.split('›');
+
+            res.send('<h1>Product: '+product+
+                     '<br><br> ASIN: '+ASIN+
+                     '<br><br> UPC: '+UPC+
+                     '<br><br> Departments: '+deptArr+
+                     '</h1>'+
+                     backBtn); //display the information
+
         })
         .catch(error => {
             console.log(error);
