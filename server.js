@@ -42,10 +42,10 @@ app.get('/getInfo', (req, res) => {
             departments = deptLocation.text();
             deptArr = departments.split('›');
 
-            res.send(`Product: ${product} <br>
-                      ASIN: ${ASIN} <br>
-                      UPC: ${UPC} <br>
-                      Departments: ${deptArr} <br>
+            res.send(`<h2>Product: ${product} <h2><br>
+                      <h2>ASIN: ${ASIN} <h2><br>
+                      <h2>UPC: ${UPC} <h2><br>
+                      <h2>Departments: ${deptArr} <h2><br>
                       ${backBtn}`); //Display all the info
 
         })
@@ -53,7 +53,7 @@ app.get('/getInfo', (req, res) => {
             console.log(error.code);
 
             res.send(`Error: ${error.code}
-                      Please check that the URL you submitted is corrct: ${URL}
+                      Please check that the URL you submitted is a corrct Amazon.com product URL: ${URL}
                       ${backBtn}`);
                      
         })
