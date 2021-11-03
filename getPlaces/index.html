@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place Searches</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly&channel=2" async></script>
+
+    <script src='js/places.js'></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <form action='' method='get' onSubmit='return false' id='queryForm'>
+        <label for='query'>Search:</label>
+        <input type='text' name='query' required>
+        <button onclick='getQuery()'>Search!</button>
+    </form>
+
+
+    <div id="map"></div>
+    <ul id="output"></ul>
+
+  </body>
+</html>
