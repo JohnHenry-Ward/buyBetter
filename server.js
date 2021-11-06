@@ -1,7 +1,7 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
-var express = require('express');
-var app = express();
+const axios = require('axios'); //to make a request to the amazon url
+const cheerio = require('cheerio'); //to parse the data returned
+var express = require('express'); //to create a local server
+var app = express(); //creation of the local server
 
 app.use(express.static('public')); //set the static folder
 
