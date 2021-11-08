@@ -3,9 +3,14 @@
        #map {
         height: 80%;
         display: none;
+        visibility: hidden;
       }
 
-      
+      #output {
+        display: none;
+        visibility: hidden;
+      }
+
       /* Optional: Makes the sample page fill the window. */
       html,
       body {
