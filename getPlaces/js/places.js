@@ -53,7 +53,7 @@ function initMap(query) {
         createMarker(results[i], map);
         document.getElementById('output').innerHTML += results[i].name + '<br>';
         let placeID = results[i].place_id;
-        // storeURLrequest(placeID, map);
+        // storeURLrequest(placeID, map); this will create a lot of requests
       }
       document.getElementById('map').style.display = 'block';
       document.getElementById('map').style.visibility = 'visible';
