@@ -3,19 +3,47 @@
 let map;
 let service;
 let infowindow;
+let json;
 
+/* grab information form the form */
 function getQuery() {
-  let query = document.forms['queryForm']['query'].value;
-  initMap(query);  
+    var geocoder= new google.maps.Geocoder();
+    let query = document.forms['queryForm']['query'].value;
+    let zip = document.forms['queryForm']['zip'].value; 
+
+    /* get json object */
+    const Http = new XMLHttpRequest();
+    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=98226&sensor=true&key=AIzaSyCHo3PURM20ItmQlRgnS4gGWxyTnUaEIj8"
+    Http.open("GET", url);
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+      console.log(Http.responseText)
+    }
+
+    console.log("zip = " + zip);
+
+    initMap(query, 48.7959658, -122.4523385);  
 }
 
-function initMap(query) {
-  const HERE = new google.maps.LatLng(48.724430, -122.487360); //currently hardcoded latitude and longitude
+/* function to fetch json of the user's zipcode */
+async function getData(url) {
+  const response = await fetch(url);
+  return response.json();
+}
+
+
+
+/* initialize the map */
+function initMap(query, lat, lng) {
+  const HERE = new google.maps.LatLng(lat, lng); //currently hardcoded latitude and longitude
+  console.log("lat = " + lat + ", long = " + lat);
   infowindow = new google.maps.InfoWindow();
   map = new google.maps.Map(document.getElementById("map"), {
     center: HERE,
     zoom: 15
   });
+
   var request = {
       location: HERE ,
       radius: '10000',
