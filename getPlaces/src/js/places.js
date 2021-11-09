@@ -10,17 +10,26 @@ function getQuery() {
     var geocoder= new google.maps.Geocoder();
     let query = document.forms['queryForm']['query'].value;
     let zip = document.forms['queryForm']['zip'].value; 
+    var json;
 
     /* get json object */
     const Http = new XMLHttpRequest();
-    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=98226&sensor=true&key=AIzaSyCHo3PURM20ItmQlRgnS4gGWxyTnUaEIj8"
-    Http.open("GET", url);
-    Http.send();
+    const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&sensor=true&key=AIzaSyCHo3PURM20ItmQlRgnS4gGWxyTnUaEIj8"
+    Http.open("GET", url, false);
+    Http.send(null);
 
+
+    json = JSON.parse(Http.responseText);
+
+    /*
     Http.onreadystatechange = (e) => {
-      console.log(Http.responseText)
+      json = JSON.parse(Http.responseText);
+      //console.log(json);
+      //console.log(Http.responseText)
     }
+    */
 
+    console.log(json);
     console.log("zip = " + zip);
 
     initMap(query, 48.7959658, -122.4523385);  
