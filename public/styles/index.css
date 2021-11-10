@@ -1,0 +1,15 @@
+h1, h4{
+    text-align: center;
+}
+
+form{
+    text-align: center;
+}
+
+#prototype{
+    background-color: rgb(215, 236, 250);
+    border-radius: 5%;
+    margin: auto;
+    padding: 10px;
+    width: fit-content;
+}
