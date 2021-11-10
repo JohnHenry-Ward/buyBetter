@@ -8,8 +8,8 @@ let json;
 /* grab information form the form */
 function getQuery() {
     var geocoder= new google.maps.Geocoder();
-    let query = document.forms['queryForm']['query'].value;
-    let zip = document.forms['queryForm']['zip'].value; 
+    let query = document.forms['queryForm']['query'].value; // get what user is searching for
+    let zip = document.forms['queryForm']['zip'].value;  // get zipcode the user inputs 
     var json;
 
     /* get json object */
@@ -17,17 +17,9 @@ function getQuery() {
     const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&sensor=true&key=AIzaSyCHo3PURM20ItmQlRgnS4gGWxyTnUaEIj8"
     Http.open("GET", url, false);
     Http.send(null);
-
-
     json = JSON.parse(Http.responseText);
 
-    /*
-    Http.onreadystatechange = (e) => {
-      json = JSON.parse(Http.responseText);
-      //console.log(json);
-      //console.log(Http.responseText)
-    }
-    */
+    //console.log("formatted address = " + json.Object.results.formatted_address);
 
     console.log(json);
     console.log("zip = " + zip);
@@ -35,10 +27,15 @@ function getQuery() {
     initMap(query, 48.7959658, -122.4523385);  
 }
 
-/* function to fetch json of the user's zipcode */
-async function getData(url) {
-  const response = await fetch(url);
-  return response.json();
+/* function that will traverse through json object and return an array containing longitude and latitude */
+function getLatLong(json)
+{
+  var longLat = new Array();
+
+  /* traverse through json */
+
+
+  return longLat;
 }
 
 
