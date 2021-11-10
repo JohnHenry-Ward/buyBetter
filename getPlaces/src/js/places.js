@@ -7,24 +7,35 @@ let json;
 
 /* grab information form the form */
 function getQuery() {
-    var geocoder= new google.maps.Geocoder();
+
     let query = document.forms['queryForm']['query'].value; // get what user is searching for
     let zip = document.forms['queryForm']['zip'].value;  // get zipcode the user inputs 
-    var json;
+    var lat;
+    var long;
 
     /* get json object */
-    const Http = new XMLHttpRequest();
     const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&sensor=true&key=AIzaSyCHo3PURM20ItmQlRgnS4gGWxyTnUaEIj8"
-    Http.open("GET", url, false);
-    Http.send(null);
-    json = JSON.parse(Http.responseText);
 
-    //console.log("formatted address = " + json.Object.results.formatted_address);
+    /* asynchronously call the api */
+    fetch(url)
+    .then(function(response) {
+      return response.json(); // get json 
+    })
+    .then(function(jsonResponse) {
+      // do something with jsonResponse
 
-    console.log(json);
+      // set the latitude and longitude based on the user's zipcode
+      lat = jsonResponse.results[0].geometry.location.lat;
+      long = jsonResponse.results[0].geometry.location.lng;
+      //console.log("(lat,long) = " + "("+lat+","+ long+")");
+      //console.log("jsonResponse.results[0].geometry.location.lat = " + JSON.stringify(jsonResponse.results[0].geometry.location.lat));
+      //console.log("jsonResponse.results[0].geometry.location.lng = " + JSON.stringify(jsonResponse.results[0].geometry.location.lng));
+      // initialize the map based on the user's latitude and longitude
+      initMap(query, lat, long);  
+    });
+
+
     console.log("zip = " + zip);
-
-    initMap(query, 48.7959658, -122.4523385);  
 }
 
 /* function that will traverse through json object and return an array containing longitude and latitude */
