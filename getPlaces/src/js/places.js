@@ -21,35 +21,16 @@ function getQuery() {
     .then(function(response) {
       return response.json(); // get json 
     })
-    .then(function(jsonResponse) {
-      // do something with jsonResponse
+    .then(function(jsonResponse) { // do something with jsonResponse 
 
       // set the latitude and longitude based on the user's zipcode
       lat = jsonResponse.results[0].geometry.location.lat;
       long = jsonResponse.results[0].geometry.location.lng;
-      //console.log("(lat,long) = " + "("+lat+","+ long+")");
-      //console.log("jsonResponse.results[0].geometry.location.lat = " + JSON.stringify(jsonResponse.results[0].geometry.location.lat));
-      //console.log("jsonResponse.results[0].geometry.location.lng = " + JSON.stringify(jsonResponse.results[0].geometry.location.lng));
+
       // initialize the map based on the user's latitude and longitude
       initMap(query, lat, long);  
     });
-
-
-    console.log("zip = " + zip);
 }
-
-/* function that will traverse through json object and return an array containing longitude and latitude */
-function getLatLong(json)
-{
-  var longLat = new Array();
-
-  /* traverse through json */
-
-
-  return longLat;
-}
-
-
 
 /* initialize the map */
 function initMap(query, lat, lng) {
