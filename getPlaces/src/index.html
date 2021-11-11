@@ -20,14 +20,20 @@
   <body>
 
     <form action='' method='get' onSubmit='return false' id='queryForm'>
+        <!--ZipCode-->
+        <label for='zip'>Zipcode:</label>
+        <input type='text' name='zip' required>
+
+        <!--What the user is searching for-->
         <label for='query'>Search:</label>
         <input type='text' name='query' required>
+
         <button onclick='getQuery()'>Search!</button>
     </form>
 
     <div id="map"></div>
     <div id="temp"></div>
     <ul id="output"></ul>
-
+ 
   </body>
-</html>
+</html> 
