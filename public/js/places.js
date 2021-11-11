@@ -10,14 +10,6 @@ function getQuery() {
 }
 
 function initMap(query) {
-  if (query == undefined || query == '') {
-    document.getElementById('temp').innerHTML = "<h1>Search to display the map</h1>";
-    return;
-  }
-
-  document.getElementById('temp').style.display = "none";
-  document.getElementById('temp').style.visibility = "hidden";
-
   console.log(`Query: ${query}`);
   const HERE = new google.maps.LatLng(48.724430, -122.487360); //currently hardcoded latitude and longitude
   const userPosition = {lat: 48.724439, lng: -122.487360};
@@ -25,7 +17,7 @@ function initMap(query) {
   //initalize the map
   const map = new google.maps.Map(document.getElementById("map"), {
     center: userPosition,
-    zoom: 13,
+    zoom: 12,
   });
   const marker = new google.maps.Marker({
     map: map,
@@ -52,14 +44,18 @@ function initMap(query) {
       document.getElementById('output').innerHTML = '';
       for (let i = 0; i < results.length; i++) {
         createMarker(results[i], map);
-        document.getElementById('output').innerHTML += results[i].name + '<br>';
+        // document.getElementById('output').innerHTML += results[i].name + '<br>';
+        let store = document.createElement('DIV');
+        store.innerHTML = results[i].name;
+        store.setAttribute('class', 'store');
+        document.getElementById('output').appendChild(store);
         let placeID = results[i].place_id;
         // storeURLrequest(placeID, map); this will create a lot of requests DO NOT COMMENT THIS OUT RIGHT NOW
       }
-      document.getElementById('map').style.display = 'block';
-      document.getElementById('map').style.visibility = 'visible';
-      document.getElementById('output').style.display = 'block';
-      document.getElementById('output').style.visibility = 'visible';
+      // document.getElementById('map').style.display = 'block';
+      // document.getElementById('map').style.visibility = 'visible';
+      // document.getElementById('output').style.display = 'block';
+      // document.getElementById('output').style.visibility = 'visible';
       // map.setCenter(results[0].geometry.location);
     }
   });

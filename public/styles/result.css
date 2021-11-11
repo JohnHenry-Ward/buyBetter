@@ -1,20 +1,36 @@
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-       #map {
-        height: 80%;
-        display: none;
-        visibility: hidden;
-      }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-      #output {
-        display: none;
-        visibility: hidden;
-      }
+#header{
+  text-align: center;
+}
 
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+#title{
+  font-size: 50px;
+}
+
+/* Always set the map height explicitly to define the size of the div element that contains the map. */
+#map {
+  height: 35vh;
+  width: 50vw;
+  margin: 10vh auto 5vh auto;
+}
+
+#output {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60vw;
+  border: 1px solid green;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.store {
+  border: 1px solid red;
+  padding: 10px 10px;
+  width: 10vw;
+  height: 10vh;
+}
