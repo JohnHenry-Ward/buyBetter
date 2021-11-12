@@ -21,7 +21,15 @@
 
     <script>
       let params = new URLSearchParams(location.search); //gets the URL
+      
+      //console.log("location = " + location);
+
       const query = params.get('query'); //pulls the query from the URL
+      const zipCode = params.get('zip'); //pulls the zip-code 
+
+      var latLong = getLatLong(zipCode);
+      console.log("This is latLong");
+      console.log(latLong);
 
       window.onload = () => {
         initMap(query);
