@@ -11,12 +11,17 @@ app.use(express.static('public')); //set the static folder
 // Main page route
 app.get('/', (req, res) => {
     res.sendFile('index.html');
-})
+});
+
 
 // route to get information from an Amazon product page
 app.get('/getInfo', (req, res) => {
     let URL = req['query']['URL']; //get the user inputted URL from the request
+    let zipCode = req['query']['zip']; // get the zip code 
 
+    console.log("zipCode = " + zipCode);
+    console.log("URL = " + URL);
+   
     const backBtn = '<button onclick="history.back()">Go Back</button>';
 
     axios.get(URL) //get request to get the HTML of the URL
@@ -69,7 +74,7 @@ app.get('/getInfo', (req, res) => {
             });
             let query = newDeptArr.join().replace(/&/g, '');
             query = query.replace(/,/g, ' ');
-            res.redirect(`result.html?query=${query}`); //we send the query to the result.html to display the stores and map
+            res.redirect(`result.html?query=${query}&zip=${zipCode}`); //we send the query to the result.html to display the stores and map
 
             //Display all the info
             // res.send(`<h2>Product: ${product} </h2><br>
@@ -88,6 +93,6 @@ app.get('/getInfo', (req, res) => {
         })
 })
 
-var server = app.listen(5000, () => {
-    console.log('Server running on port 5000');
+var server = app.listen(5001, () => {
+    console.log('Server running on port 5001');
 })

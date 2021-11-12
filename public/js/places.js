@@ -6,11 +6,57 @@ let infowindow;
 
 function getQuery() {
   let query = document.forms['queryForm']['query'].value;
+  let zip = document.forms['queryForm']['zip'].value;  // get zipcode the user inputs 
+
+  console.log("query = " + query);
+  console.log("zip from places.js = " + zip);
+
+  var latLong = getLatLong(zip);
+
   initMap(query);  
 }
 
+function getLatLong(zip)
+{
+  console.log("zip from getLatLong = " +zip);
+  var latitude;
+  var longitude;
+
+  // URL to the api
+  const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&sensor=true&key=AIzaSyCHo3PURM20ItmQlRgnS4gGWxyTnUaEIj8";
+
+  // asynchronously call the api 
+  fetch(url)
+  .then(function(response) {
+    console.log("returning json");
+    return response.json(); // get json 
+  })
+  .then(function(jsonResponse) { // do something with jsonResponse 
+
+    // set the latitude and longitude based on the user's zipcode
+    latitude = jsonResponse.results[0].geometry.location.lat;
+    longitude = jsonResponse.results[0].geometry.location.lng;
+
+    console.log("lat = " + latitude);
+    console.log("long = " + longitude);
+    return {lat: latitude, long: longitude};
+  });
+
+}
+
 function initMap(query) {
+
+  if (query == undefined || query == '') {
+    document.getElementById('temp').innerHTML = "<h1>Search to display the map</h1>";
+    return;
+  }
+
+  document.getElementById('temp').style.display = "none";
+  document.getElementById('temp').style.visibility = "hidden";
+
   console.log(`Query: ${query}`);
+  //const HERE = new google.maps.LatLng(latitude, longitude); 
+  //const userPosition = {lat: latitude, lng: longitude};
   const HERE = new google.maps.LatLng(48.724430, -122.487360); //currently hardcoded latitude and longitude
   const userPosition = {lat: 48.724439, lng: -122.487360};
   infowindow = new google.maps.InfoWindow();
