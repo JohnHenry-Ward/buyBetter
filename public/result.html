@@ -27,12 +27,12 @@
       const query = params.get('query'); //pulls the query from the URL
       const zipCode = params.get('zip'); //pulls the zip-code 
 
-      var latLong = getLatLong(zipCode);
-      console.log("This is latLong");
-      console.log(latLong);
+      
+      
 
       window.onload = () => {
-        initMap(query);
+        initMap(query, zipCode);
+        
       }
     </script>
 
