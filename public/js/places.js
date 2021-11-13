@@ -8,8 +8,8 @@ function getQuery() {
   let query = document.forms['queryForm']['query'].value;
   let zip = document.forms['queryForm']['zip'].value;  // get zipcode the user inputs 
 
-  console.log("query = " + query);
-  console.log("zip from places.js = " + zip);
+  // console.log("query = " + query);
+  // console.log("zip from places.js = " + zip);
 
   var latLong = getLatLong(zip);
 
@@ -51,8 +51,8 @@ function initMap(query) {
     return;
   }
 
-  document.getElementById('temp').style.display = "none";
-  document.getElementById('temp').style.visibility = "hidden";
+  // document.getElementById('temp').style.display = "none";
+  // document.getElementById('temp').style.visibility = "hidden";
 
   console.log(`Query: ${query}`);
   //const HERE = new google.maps.LatLng(latitude, longitude); 
