@@ -60,42 +60,33 @@ header {
     padding-top: 10vh;
 }
 
-#mapWrapper{
-    margin: 10vh;
-}
-
-#mainContent h1{
+#mainContent h2{
     text-align: center;
     color: white;
 }
 
-#map{
-    height: 35vh;
-    width: 50vw;
-    margin: 0 auto 5vh auto;
-}
-
-#stores{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin: 0 50px 50px 50px;
-}
-
-.store{
-    border: 1px solid #333;
-    border-radius: 5px;
-    width: 10vw;
-    min-width: 10vw;
-    min-height: 10vh;
-    margin: 10px 100px 10px 100px;
-    display: flex;
-    flex-direction: column;
-}
-
-.store *{
+#aboutUs{
+    margin: 50px auto 50px auto;
+    width: fit-content;
     text-align: center;
-    margin: 1vh 0;
-    padding-left: 2px;
-    padding-right: 2px;
+    color: white;
+}
+
+#aboutUs p{
+    width: 50vw;
+}
+
+#articles{
+    display: flex;
+    justify-content: space-around;
+}
+
+.article{
+    text-align: center;
+    color: white;
+    background-color: #333;
+    border-radius: 5px;
+    min-height: 40vh;
+    width: 25vw;
+    opacity: 75%;
 }

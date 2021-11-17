@@ -1,47 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Place Searches</title>
+<head>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  
+  <!-- Tutorial Key (doesn't work with server) -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly&channel=2" async></script> -->
+  
+  <!-- Alex's Key -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHo3PURM20ItmQlRgnS4gGWxyTnUaEIj8&callback=initMap&libraries=places&v=weekly&channel=2" async></script>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <!-- JH's Key -->
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_mHWGk7lOLIAtAw_tOBMA5b367WI-uEg&callback=initMap&libraries=places&v=weekly&channel=2" async></script> -->
+
+  <script src='./js/places.js'></script>
+  <link rel="stylesheet" href="styles/result.css">
+  <title>Place Searches</title>
+</head>
+<body>
+  <script>
+    let params = new URLSearchParams(location.search); //gets the URL
     
-    <!-- Tutorial Key (doesn't work with server) -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly&channel=2" async></script> -->
-    
-    <!-- Alex's Key -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHo3PURM20ItmQlRgnS4gGWxyTnUaEIj8&callback=initMap&libraries=places&v=weekly&channel=2" async></script>
+    const query = params.get('query'); //pulls the query from the URL
+    const zipCode = params.get('zip'); //pulls the zip-code 
 
-    <!-- JH's Key -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_mHWGk7lOLIAtAw_tOBMA5b367WI-uEg&callback=initMap&libraries=places&v=weekly&channel=2" async></script> -->
-
-    <script src='./js/places.js'></script>
-    <link rel="stylesheet" href="./styles/result.css">
-  </head>
-  <body>
-
-    <script>
-      let params = new URLSearchParams(location.search); //gets the URL
+    window.onload = () => {
+      initMap(query, zipCode);
       
-      //console.log("location = " + location);
+    }
+  </script>
 
-      const query = params.get('query'); //pulls the query from the URL
-      const zipCode = params.get('zip'); //pulls the zip-code 
+  <header id='header'>
+    <h1 id='title'>Buy Better</h1>
+    <ul id='navBar'>
+      <li class='navBtn'><a href='/' >Home</a></li>
+      <li class='navBtn'><a href='/aboutUs' >About Us</a></li>
+      <li class='navBtn'><a href='#' >FAQ's</a></li>
+    </ul>
+  </header>
 
-      
-      
-
-      window.onload = () => {
-        initMap(query, zipCode);
-        
-      }
-    </script>
-
-    <div id='header'>
-      <p id='title'>Results</p>
+  <div id='mainContent'>
+    <div id='mapWrapper'>
+      <h1>Location of stores</h1>
+      <div id='map'></div>
     </div>
-    <div id="map"></div>
-    <div id="output"></div>
-    <button onclick="history.back()">Go Back</button>
+    <h1>List of stores</h1>
+    <div id='stores'>
+      
+    </div>
+  </div>  
 
-  </body>
+</body>
 </html>
