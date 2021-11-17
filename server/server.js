@@ -93,6 +93,10 @@ app.get('/getInfo', (req, res) => {
         })
 })
 
+app.get('/aboutUs', (req, res) => {
+    res.sendFile('aboutUs.html', {root: 'public'});
+})
+
 var server = app.listen(5001, () => {
     console.log('Server running on port 5001');
 })
