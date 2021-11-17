@@ -63,26 +63,21 @@ function getLatLong(zip) {
       service = new google.maps.places.PlacesService(map);
       service.nearbySearch(request, (results, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
-          document.getElementById('output').innerHTML = '';
+          let stores = document.getElementById('stores');
           for (let i = 0; i < results.length; i++) {
             createMarker(results[i], map);
-            // document.getElementById('output').innerHTML += results[i].name + '<br>';
             let store = document.createElement('DIV');
-            store.innerHTML = results[i].name;
             store.setAttribute('class', 'store');
-            document.getElementById('output').appendChild(store);
+            let name = document.createElement('P');
+            name.innerHTML = results[i].name;
+            store.appendChild(name);
+            stores.appendChild(store);
             let placeID = results[i].place_id;
             // storeURLrequest(placeID, map); this will create a lot of requests DO NOT COMMENT THIS OUT RIGHT NOW
           }
-          // document.getElementById('map').style.display = 'block';
-          // document.getElementById('map').style.visibility = 'visible';
-          // document.getElementById('output').style.display = 'block';
-          // document.getElementById('output').style.visibility = 'visible';
-          // map.setCenter(results[0].geometry.location);
         }
       });
     });
-
 }
 
 function initMap(query, zipcode) {

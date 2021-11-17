@@ -75,7 +75,7 @@ header {
     margin: 0 auto 5vh auto;
 }
 
-#results{
+#stores{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -96,4 +96,6 @@ header {
 .store *{
     text-align: center;
     margin: 1vh 0;
+    padding-left: 2px;
+    padding-right: 2px;
 }

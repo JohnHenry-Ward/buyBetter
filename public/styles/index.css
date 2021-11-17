@@ -77,7 +77,7 @@ header {
     margin: auto;
 }
 
-#zipcode, #URL{
+#zip, #URL{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
