@@ -21,11 +21,12 @@
     let params = new URLSearchParams(location.search); //gets the URL
     
     const query = params.get('query'); //pulls the query from the URL
-    const zipCode = params.get('zip'); //pulls the zip-code 
+    const zipCode = params.get('zip'); //pulls the zip-code
+    const storeName = params.get('storeName'); //pulls the original seller
 
     window.onload = () => {
       initMap(query, zipCode);
-      
+      createPopUp(storeName);
     }
   </script>
 
@@ -45,9 +46,20 @@
     </div>
     <h1>List of stores</h1>
     <div id='stores'>
-      
     </div>
   </div>  
+
+  <div id='popupStore'>
+    <div id='popupStoreInfo'>
+      <p>The product you are searching for is originally sold by</p>
+      <p id='popupStoreName'></p>
+      <p id='text'>Check to see if they have an online store and buy directly from them!</p>
+      <div id='popupStoreBtns'>
+        <button class='popupStoreBtn' onclick='searchGoogle(storeName)'>Search</button>
+        <button class='popupStoreBtn' onclick='closePopUp()'>Close</button>
+      </div>
+    </div>
+  </div>
 
 </body>
 </html>

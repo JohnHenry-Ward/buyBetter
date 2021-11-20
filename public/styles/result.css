@@ -60,9 +60,6 @@ header {
     padding-top: 10vh;
 }
 
-#mapWrapper{
-    margin: 10vh;
-}
 
 #mainContent h1{
     text-align: center;
@@ -70,9 +67,10 @@ header {
 }
 
 #map{
-    height: 35vh;
+    height: 45vh;
     width: 50vw;
     margin: 0 auto 5vh auto;
+    z-index: -4;
 }
 
 #stores{
@@ -98,4 +96,54 @@ header {
     margin: 1vh 0;
     padding-left: 2px;
     padding-right: 2px;
+}
+
+
+
+#popupStore{
+    width: 30vw;
+    height: fit-content;
+    position: fixed;
+    left: 34%;
+    z-index: 1;
+    top: 25vh;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#popupStoreInfo{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    text-align: center;
+    font-size: 1.5em;
+    justify-content: space-evenly;
+}
+
+#popupStoreName{
+    font-weight: bolder;
+}
+
+#popupStoreBtns{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.popupStoreBtn{
+    list-style: none;
+    background-color: white;
+    color: black;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 4px 4px;
+    margin-right: 8px;
+}
+
+.popupStoreBtn:hover{
+    background-color: #333;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
 }

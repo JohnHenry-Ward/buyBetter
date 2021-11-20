@@ -130,3 +130,23 @@ function storeURLrequest(id, map) {
     }
   })
 }
+
+function createPopUp(storeName) {
+  console.log(storeName.includes('Amazon'));
+  if (storeName == '-1' || storeName.includes('Amazon') || storeName.includes('amazon')) {
+    const popup = document.getElementById('popupStore');
+    popup.style.display = 'none';
+  } else {
+    const popupName = document.getElementById('popupStoreName');
+    popupName.innerHTML = storeName;
+  }
+}
+
+function closePopUp() {
+  const popup = document.getElementById('popupStore');
+  popup.style.display = 'none';
+}
+
+function searchGoogle(name) {
+  window.open(`https://google.com/search?q=${name}`, '_blank');
+}

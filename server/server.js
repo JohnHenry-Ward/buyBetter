@@ -62,9 +62,7 @@ app.get('/getInfo', (req, res) => {
             }
 
             if (soldBy == '') {
-                soldBy = 'Seller not listed';
-            } else {
-                soldBy += ' (check to see if they have an online store and buy directly from them!)';
+                soldBy = '-1';
             }
 
             // places.initMap(JSON.stringify(deptArr));
@@ -74,7 +72,7 @@ app.get('/getInfo', (req, res) => {
             });
             let query = newDeptArr.join().replace(/&/g, '');
             query = query.replace(/,/g, ' ');
-            res.redirect(`result.html?query=${query}&zip=${zipCode}`); //we send the query to the result.html to display the stores and map
+            res.redirect(`result.html?query=${query}&zip=${zipCode}&storeName=${soldBy}`); //we send the query to the result.html to display the stores and map
 
             //Display all the info
             // res.send(`<h2>Product: ${product} </h2><br>
@@ -87,9 +85,8 @@ app.get('/getInfo', (req, res) => {
         })
         .catch(error => {
             console.log(`Error: ${error}`);
-            res.send(`Error: ${error}, Code: ${error.code} <br>
-                      Please check that the URL you submitted is a corrct Amazon.com product URL: ${URL}
-                      ${backBtn}`);
+            
+            res.redirect(`index.html?url=${URL}&status=error`);
         })
 })
 
