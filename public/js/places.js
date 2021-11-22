@@ -5,7 +5,7 @@ let service;
 let infowindow;
 
 
-function getLatLong(zip) {
+function getLatLong(query, zip) {
   console.log("zip from getLatLong = " + zip);
   var latitude;
   var longitude;
@@ -53,6 +53,7 @@ function getLatLong(zip) {
         infowindow.open(marker.get("map"), marker);
       });
       //create the request
+      console.log(`QUERY: ${query}`);
       var request = {
         location: location,
         radius: '10000', //in meters
@@ -81,7 +82,7 @@ function getLatLong(zip) {
 }
 
 function initMap(query, zipcode) {
-
+  console.log('initMap');
   if (query == undefined || query == '') {
     return;
   }
@@ -90,14 +91,10 @@ function initMap(query, zipcode) {
   // document.getElementById('temp').style.visibility = "hidden";
 
   console.log(`Query: ${query}`);
-  console.log(`zipcode: ${zipcode}`)
+  console.log(`zipcode: ${zipcode}`);
   //const HERE = new google.maps.LatLng(latitude, longitude); 
   //const userPosition = {lat: latitude, lng: longitude};
-  getLatLong(zipcode);
-
-
-
-
+  getLatLong(query, zipcode);
 
 }
 

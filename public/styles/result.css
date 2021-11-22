@@ -27,6 +27,10 @@ header {
     box-shadow: 0 0 25px 0 black;
 }
 
+#header {
+    z-index: 99999;
+}
+
 #header #navBar{
     display: flex;
 }
@@ -70,7 +74,6 @@ header {
     height: 45vh;
     width: 50vw;
     margin: 0 auto 5vh auto;
-    z-index: -4;
 }
 
 #stores{
@@ -97,8 +100,6 @@ header {
     padding-left: 2px;
     padding-right: 2px;
 }
-
-
 
 #popupStore{
     width: 30vw;
