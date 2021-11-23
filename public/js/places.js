@@ -24,9 +24,9 @@ function getLatLong(query, zip) {
       // set the latitude and longitude based on the user's zipcode
       latitude = jsonResponse.results[0].geometry.location.lat;
       longitude = jsonResponse.results[0].geometry.location.lng;
-
       console.log("lat = " + latitude);
       console.log("long = " + longitude);
+      
 
       //grab lat and long
       const location = new google.maps.LatLng(latitude, longitude);
@@ -62,17 +62,37 @@ function getLatLong(query, zip) {
       };
       //make the request and handle the result
       service = new google.maps.places.PlacesService(map);
-      service.nearbySearch(request, (results, status) => {
+      service.nearbySearch(request, (results, status) => { // stores are in results
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           let stores = document.getElementById('stores');
-          for (let i = 0; i < results.length; i++) {
-            createMarker(results[i], map);
+          /* traverse through stores found */
+          console.log("results = " + results);
+          for (let i = 0; i < results.length; i++) { // find a way to get the address from results
+
+            //console.log("result["+i+"].geometry.location = " + results[i].geometry.location); // prints a tuple (lat,lng)
+            //console.log(JSON.stringify(results[i])); 
+            //console.log("results["+i+"].vicinity = " + results[i].vicinity); 
+
+            createMarker(results[i], map); // result[i] -> place, map -> map
+
+            /* create div element for each store */
             let store = document.createElement('DIV');
             store.setAttribute('class', 'store');
-            let name = document.createElement('P');
-            name.innerHTML = results[i].name;
+
+            /* get the name of the store and create list to store attributes of store */
+            let name = document.createElement('ul');
+            name.innerHTML = results[i].name; // for each store found, insert the name of the store into html
+            
+            /* get the current address of store, store it as an attribute of the store */
+            let address = document.createElement('li');
+            address.innerText= results[i].vicinity;
+            name.appendChild(address);
+
+            /* create the list */
             store.appendChild(name);
+            store.appendChild(address);
             stores.appendChild(store);
+
             let placeID = results[i].place_id;
             // storeURLrequest(placeID, map); this will create a lot of requests DO NOT COMMENT THIS OUT RIGHT NOW
           }
@@ -80,6 +100,8 @@ function getLatLong(query, zip) {
       });
     });
 }
+
+
 
 function initMap(query, zipcode) {
   console.log('initMap');
