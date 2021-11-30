@@ -4,9 +4,10 @@ let map;
 let service;
 let infowindow;
 
-
-function getLatLong(query, zip) {
-  console.log("zip from getLatLong = " + zip);
+function getResults(query, zip) {
+  if (query == undefined || query == '' || zip == undefined || zip == '') {
+    return;
+  }
   var latitude;
   var longitude;
 
@@ -24,19 +25,12 @@ function getLatLong(query, zip) {
       // set the latitude and longitude based on the user's zipcode
       latitude = jsonResponse.results[0].geometry.location.lat;
       longitude = jsonResponse.results[0].geometry.location.lng;
-      console.log("lat = " + latitude);
-      console.log("long = " + longitude);
-      
 
       //grab lat and long
       const location = new google.maps.LatLng(latitude, longitude);
       infowindow = new google.maps.InfoWindow();
-      
-      console.log("lat type " + typeof(latitude));
       //userPosition
       const userPosition = { lat: parseFloat(latitude), lng: parseFloat(longitude) };
-      console.log('userpos');
-      console.log(userPosition);
       //initalize the map
       const map = new google.maps.Map(document.getElementById("map"), {
         center: userPosition,
@@ -53,7 +47,6 @@ function getLatLong(query, zip) {
         infowindow.open(marker.get("map"), marker);
       });
       //create the request
-      console.log(`QUERY: ${query}`);
       var request = {
         location: location,
         radius: '10000', //in meters
@@ -69,10 +62,6 @@ function getLatLong(query, zip) {
           console.log("results = " + results);
           for (let i = 0; i < results.length; i++) { // find a way to get the address from results
 
-            //console.log("result["+i+"].geometry.location = " + results[i].geometry.location); // prints a tuple (lat,lng)
-            //console.log(JSON.stringify(results[i])); 
-            //console.log("results["+i+"].vicinity = " + results[i].vicinity); 
-
             createMarker(results[i], map); // result[i] -> place, map -> map
 
             /* create div element for each store */
@@ -80,13 +69,14 @@ function getLatLong(query, zip) {
             store.setAttribute('class', 'store');
 
             /* get the name of the store and create list to store attributes of store */
-            let name = document.createElement('ul');
+            let name = document.createElement('p');
+            name.setAttribute('class', 'storeName');
             name.innerHTML = results[i].name; // for each store found, insert the name of the store into html
             
             /* get the current address of store, store it as an attribute of the store */
-            let address = document.createElement('li');
+            let address = document.createElement('p');
+            address.setAttribute('class', 'storeAddress');
             address.innerText= results[i].vicinity;
-            name.appendChild(address);
 
             /* create the list */
             store.appendChild(name);
@@ -99,25 +89,6 @@ function getLatLong(query, zip) {
         }
       });
     });
-}
-
-
-
-function initMap(query, zipcode) {
-  console.log('initMap');
-  if (query == undefined || query == '') {
-    return;
-  }
-
-  // document.getElementById('temp').style.display = "none";
-  // document.getElementById('temp').style.visibility = "hidden";
-
-  console.log(`Query: ${query}`);
-  console.log(`zipcode: ${zipcode}`);
-  //const HERE = new google.maps.LatLng(latitude, longitude); 
-  //const userPosition = {lat: latitude, lng: longitude};
-  getLatLong(query, zipcode);
-
 }
 
 //cereates a red marker over each store
