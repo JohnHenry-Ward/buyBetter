@@ -17,7 +17,6 @@ function getResults(query, zip) {
   // asynchronously call the api 
   fetch(url)
     .then(function (response) {
-      console.log("returning json");
       return response.json(); // get json 
     })
     .then(function (jsonResponse) { // do something with jsonResponse 
@@ -59,14 +58,17 @@ function getResults(query, zip) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
           let stores = document.getElementById('stores');
           /* traverse through stores found */
-          console.log("results = " + results);
           for (let i = 0; i < results.length; i++) { // find a way to get the address from results
 
-            createMarker(results[i], map); // result[i] -> place, map -> map
+            let thisMarker = createMarker(results[i], map); // result[i] -> place, map -> map
 
             /* create div element for each store */
             let store = document.createElement('DIV');
             store.setAttribute('class', 'store');
+
+            store.addEventListener('click', () => {
+              linkStoreToMap(thisMarker, results[i], map);
+            });
 
             /* get the name of the store and create list to store attributes of store */
             let name = document.createElement('p');
@@ -76,7 +78,7 @@ function getResults(query, zip) {
             /* get the current address of store, store it as an attribute of the store */
             let address = document.createElement('p');
             address.setAttribute('class', 'storeAddress');
-            address.innerText= results[i].vicinity;
+            address.innerText= 'Address: ' + results[i].vicinity;
 
             /* create the list */
             store.appendChild(name);
@@ -101,6 +103,13 @@ function createMarker(place, map) {
     infowindow.setContent(place.name);
     infowindow.open(marker.get("map"), marker);
   });
+
+  return marker;
+}
+
+function linkStoreToMap(marker, place, map) {
+  infowindow.setContent(place.name);
+  infowindow.open(marker.get("map"), marker);
 }
 
 //gets the URL of each store listed
@@ -122,7 +131,6 @@ function storeURLrequest(id, map) {
 }
 
 function createPopUp(storeName) {
-  console.log(storeName.includes('Amazon'));
   if (storeName == '-1' || storeName.includes('Amazon') || storeName.includes('amazon')) {
     const popup = document.getElementById('popupStore');
     popup.style.display = 'none';
