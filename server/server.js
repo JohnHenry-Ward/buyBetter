@@ -18,9 +18,6 @@ app.get('/', (req, res) => {
 app.get('/getInfo', (req, res) => {
     let URL = req['query']['URL']; //get the user inputted URL from the request
     let zipCode = req['query']['zip']; // get the zip code 
-
-    console.log("zipCode = " + zipCode);
-    console.log("URL = " + URL);
    
     const backBtn = '<button onclick="history.back()">Go Back</button>';
 
@@ -90,8 +87,8 @@ app.get('/getInfo', (req, res) => {
         })
 })
 
-app.get('/aboutUs', (req, res) => {
-    res.sendFile('aboutUs.html', {root: 'public'});
+app.get('/info', (req, res) => {
+    res.sendFile('info.html', {root: 'public'});
 })
 
 var server = app.listen(5001, () => {

@@ -31,6 +31,10 @@ header {
     display: flex;
 }
 
+#header{
+    z-index: 9999;
+}
+
 .navBtn{
     list-style: none;
     border: 1px solid #333;
@@ -57,11 +61,12 @@ header {
 }
 
 #mainContent{
-    padding-top: 10vh;
+    padding-top: 15vh;
 }
 
 #mainContent h2{
     text-align: center;
+    font-size: 2em;
 }
 
 #howTo{
@@ -98,6 +103,22 @@ header {
     cursor: pointer;
 }
 
-#statistics{
+#information{
     text-align: center;
+}
+
+#articles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.article{
+    border: 1px solid black;
+    width: 15vw;
+    height: 25vh;
+}
+
+.article:hover{
+    cursor: pointer;
 }

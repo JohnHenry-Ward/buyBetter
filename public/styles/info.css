@@ -49,6 +49,10 @@ header {
     color: #333;
 }
 
+#header{
+    z-index: 9999;
+}
+
 #title{
     height: 80px;
     margin-left: 40px;
@@ -78,15 +82,34 @@ header {
 
 #articles{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .article{
-    text-align: center;
     color: white;
     background-color: #333;
+    border: 1px solid #333;
     border-radius: 5px;
     min-height: 40vh;
     width: 25vw;
     opacity: 75%;
+    text-decoration: none;
+    padding: 10px;
+    margin: 25px;
+}
+
+.article:hover{
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.articleTitle{
+    font-size: 1.4em;
+    margin: 0 0 20px 0;
+}
+
+.articleAuthor{
+    font-size: 1em;
+    margin: 0 0 20px 0;
 }
