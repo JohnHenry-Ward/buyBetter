@@ -68,6 +68,7 @@ app.get('/getInfo', (req, res) => {
                 newDeptArr.push(dept.replace(/(\r\n|\n|\r)/gm, '').trim());
             });
             let query = newDeptArr.join().replace(/&/g, '');
+            
             query = query.replace(/,/g, ' ');
             res.redirect(`result.html?query=${query}&zip=${zipCode}&storeName=${soldBy}`); //we send the query to the result.html to display the stores and map
 

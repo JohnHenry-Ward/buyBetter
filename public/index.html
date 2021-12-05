@@ -32,10 +32,27 @@
         <label for="URL">Amazon URL</label>
         <input type="text" id="URL" name="URL" required><br>
         <label for="zip">Zip Code</label>
-        <input type="text" id="zip" name="zip" required> <br>
+        <input type="text" id="zip" name="zip" required> <button type="button" id="location" onclick="getUserLocation()"> Get my Location</button><br>
         <input type="submit" id='submit'>
     </form>
   </main>
 </body>
+
+<script>
+  function getUserLocation(){
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(function(position){
+        console.log("Position found");
+        
+        var lat = position.coords.latitude;
+        var long = position.coords.longitude;
+        document.getElementById('zip').value = "locationprovided|" + lat + "|"+long;
+      });
+    }
+    else{
+      console.log("Position not found");
+    }
+  }
+</script>
 </html>
 
