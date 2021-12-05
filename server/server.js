@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 // route to get information from an Amazon product page
 app.get('/getInfo', (req, res) => {
     let URL = req['query']['URL']; //get the user inputted URL from the request
-    let zipCode = req['query']['zip']; // get the zip code 
+    let zipCode = req['query']['zip']; // get the zip code (or exact location)
    
     const backBtn = '<button onclick="history.back()">Go Back</button>';
 
@@ -68,7 +68,6 @@ app.get('/getInfo', (req, res) => {
                 newDeptArr.push(dept.replace(/(\r\n|\n|\r)/gm, '').trim());
             });
             let query = newDeptArr.join().replace(/&/g, '');
-            
             query = query.replace(/,/g, ' ');
             res.redirect(`result.html?query=${query}&zip=${zipCode}&storeName=${soldBy}`); //we send the query to the result.html to display the stores and map
 
@@ -84,7 +83,7 @@ app.get('/getInfo', (req, res) => {
         .catch(error => {
             console.log(`Error: ${error}`);
             
-            res.redirect(`index.html?url=${URL}&status=error`);
+            res.redirect(`index.html?status=error`);
         })
 })
 
