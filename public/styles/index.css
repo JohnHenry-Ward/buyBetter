@@ -70,7 +70,7 @@ header {
 }
 
 #howTo{
-    margin: 50px auto 50px auto;
+    margin: 50px auto 25px auto;
     width: fit-content;
 }
 
@@ -86,6 +86,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 10px;
 }
 
 #zip, #URL{
@@ -102,19 +103,19 @@ header {
 }
 
 #zip{
-    width: 50%;
     margin-right: 10px;
+    width: 48%;
 }
 
 #exactLocation{
-    width: 50%;
     background-color: #3a49c9;
     color: white;
     padding: 14px 20px;
     margin: auto auto auto 10px;
-    border: none;
+    border: 1px solid #3a49c9;
     border-radius: 4px;
     cursor: pointer;
+    justify-items: center;
 }
 
 #submit{
@@ -123,7 +124,17 @@ header {
     color: white;
     padding: 14px 20px;
     margin: auto;
-    border: none;
+    border: 1px solid #4CAF50;
     border-radius: 4px;
     cursor: pointer;
+}
+
+#exactLocation:hover{
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+#submit:hover{
+    cursor: pointer;
+    border: 1px solid white;
 }

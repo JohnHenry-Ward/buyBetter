@@ -24,16 +24,16 @@
       <ol id='list'>
         <li>Find the product you want on Amazon.com</li>
         <li>Copy the URL of the product</li>
-        <li>Enter in your zip code</li>
-        <li>Hit submit to find stores local that may have similar products in stock</li>
+        <li>Enter in your zip code or use your exact location</li>
+        <li>Hit submit to find stores local that may have similar products</li>
       </ol>
     </div>
     <form action='/getInfo' method='get' id='inputForm'>
-        <label for="URL">Amazon URL</label>
-        <input type="text" id="URL" name="URL" required><br>
-        <label for="zip">Zip Code</label>
+        <!-- <label for="URL">Amazon URL</label> -->
+        <input type="text" id="URL" name="URL" placeholder="Amazon URL" required><br>
+        <!-- <label for="zip">Zip Code</label> -->
         <div id='locationWrapper'>
-          <input type="text" id="zip" name="zip" required>
+          <input type="text" id="zip" name="zip" placeholder="Zip Code" required>
           <p>OR</p>
           <input type="button" id='exactLocation' onclick='getUserLocation()' value='Use More Precise Location'>
         </div>
