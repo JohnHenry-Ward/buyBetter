@@ -6,5 +6,5 @@
 ### To Run
 ```npm start```
 
-#### Project Report Website
+### Project Report Website
 https://johnhenry-ward.github.io/buyBetter-report/
