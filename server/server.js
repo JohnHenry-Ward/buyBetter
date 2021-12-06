@@ -4,8 +4,6 @@ const path = require('path');
 var express = require('express'); //to create a local server
 var app = express(); //creation of the local server
 
-const places = require('../public/js/places');
-
 app.use(express.static('public')); //set the static folder
 
 // Main page route
@@ -81,9 +79,8 @@ app.get('/getInfo', (req, res) => {
 
         })
         .catch(error => {
-            console.log(`Error: ${error}`);
-            
-            res.redirect(`index.html?status=error`);
+            console.log(`${error}`);
+            res.redirect(`/?status=error&msg=${error}`);
         })
 })
 

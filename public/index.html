@@ -9,6 +9,17 @@
     <title>Buy Better</title>
 </head>
 <body>
+  <script>
+    let params = new URLSearchParams(location.search); //gets the URL
+    
+    const status = params.get('status');
+    const message = params.get('msg');
+
+    if (status == 'error') {
+      window.alert(`Sorry, an error occured. Make sure the URL you are inputting is correct and try again.\n${message}`);
+      window.location.href = '/';
+    }
+  </script>
 
   <header id='header'>
       <h1 id='title'>Buy Better</h1>
