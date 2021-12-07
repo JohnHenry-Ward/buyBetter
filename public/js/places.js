@@ -15,8 +15,11 @@ function getResults(query, zip) {
     [ latitude, longitude ] = zip.split(',');
   }
 
+  //get the api key
+  const apiKey = config.apiKey;
+
   // URL to the api
-  const url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zip + "&sensor=true&key=AIzaSyCHo3PURM20ItmQlRgnS4gGWxyTnUaEIj8";
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${zip}&sensor=true&key=${apiKey}`;
 
   // asynchronously call the api 
   fetch(url)
