@@ -103,7 +103,6 @@ header {
 }
 
 #zip{
-    margin-right: 10px;
     width: 48%;
 }
 
@@ -111,11 +110,15 @@ header {
     background-color: #3a49c9;
     color: white;
     padding: 14px 20px;
-    margin: auto auto auto 10px;
     border: 1px solid #3a49c9;
     border-radius: 4px;
     cursor: pointer;
     justify-items: center;
+}
+
+#locationOr{
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 #submit{
